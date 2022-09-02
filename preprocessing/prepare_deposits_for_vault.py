@@ -10,7 +10,10 @@
 # In some cases one line in the file commences with 'Experiment description: '. 
 #  
 import os
+# need to fix cannot find the pandas module issue
+# import pandas as pd 
 
+# Outline: 
 # Crawl through folders 
 # Identify nesting of year, month, date. 
 # For each 'terminal' folder containing no sub-folders, add a line to the CSV for a potential deposit, 
@@ -21,9 +24,18 @@ import os
 # arg: add a sample ID to all deposit descriptions (I think species should be in vault description). 
 # arg: add an equipment make and model to all deposit descriptions. 
 # 
-#def main():
-    output_file = open("deposits_metadata.CSV", w+)
-    output_file.write("this is output \n")
+
+outputpath = "./script_output/" 
+# Holding the field names in a list
+fields = ["Index", "DepositTitle", "DepositDescription", "PathToFiles"] 
+# Holding the rows in a dataframe, where the fields are the columns
+# metadata = pd.DataFrame()
+
+def main():
+    output_file = open( outputpath + "deposits_metadata.CSV", "w+")
+    output_file.write("Index, DepositTitle, DepositDescription, PathToFiles\n") # replace with a loop through the list
+    output_file.write("this is output, and another field, and an extra field, \n")
     output_file.close() 
-#if __name__=='__main__':
-#    main()
+
+if __name__=='__main__':
+     main()
