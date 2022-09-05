@@ -30,7 +30,7 @@ outputpath = "./"
 # Holding the field names in a list
 fields = ["Index", "DepositTitle", "DepositDescription", "PathToFiles"] 
 # Holding the rows in a dataframe, where the fields are the columns
-# metadata = pd.DataFrame()
+metadata = pd.DataFrame()
 
 def main():
     output_file = open( outputpath + "deposits_metadata.CSV", "w")
