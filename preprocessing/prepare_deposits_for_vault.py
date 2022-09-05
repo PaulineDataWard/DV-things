@@ -11,7 +11,8 @@
 #  
 import os
 # need to fix cannot find the pandas module issue
-# import pandas as pd 
+import numpy as np
+import pandas as pd 
 
 # Outline: 
 # Crawl through folders 
@@ -25,14 +26,14 @@ import os
 # arg: add an equipment make and model to all deposit descriptions. 
 # 
 
-outputpath = "./script_output/" 
+outputpath = "./" 
 # Holding the field names in a list
 fields = ["Index", "DepositTitle", "DepositDescription", "PathToFiles"] 
 # Holding the rows in a dataframe, where the fields are the columns
 # metadata = pd.DataFrame()
 
 def main():
-    output_file = open( outputpath + "deposits_metadata.CSV", "w+")
+    output_file = open( outputpath + "deposits_metadata.CSV", "w")
     output_file.write("Index, DepositTitle, DepositDescription, PathToFiles\n") # replace with a loop through the list
     output_file.write("this is output, and another field, and an extra field, \n")
     output_file.close() 
