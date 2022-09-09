@@ -9,10 +9,9 @@
 # Not all Swain lab data has an accompanying logfile. Some folders have multiple .log files, others multiple .txt files. 
 # In some cases one line in the file commences with 'Experiment description: '. 
 #  
-from asyncore import write
+import asyncore 
 import os
-from selectors import DevpollSelector
-# need to fix cannot find the pandas module issue
+import selectors
 import numpy as np
 import pandas as pd 
 
@@ -46,13 +45,12 @@ def main():
     fields = ["Index", "DepositTitle", "DepositDescription", "PathToFiles", "No. of files", "Name of first file"] 
 
     # Holding the rows in a dataframe, where the fields are the columns
-    metadata = pd.DataFrame()
-    metadata.set_index(fields)
+    metadata = pd.DataFrame(columns = fields)
 
     # Output file
     output_file = open( outputpath + "deposits_metadata.CSV", "w")
     
-    for root, directory_names in walk.os(top_level_directory):
+    for root, directory_names in os.walk(top_level_directory):
         metadata[PathToFiles] = root 
 
         
