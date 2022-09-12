@@ -34,11 +34,9 @@ def main():
     deposit_description_prefix = "Sample ID:??? Equipment make and model??? etc ... " 
     # If splitting by year, use this list of years which will be matched against folder names 
     years = ["2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"]
-    year_name = ""
 
     # If splitting by staff names, use this list of names which will be matched against folder names
     staff_names = ["Pauline", "Ivan", "Tomasz", "Andrew", "Manuel", "Nahuel", "Andy"]
-    person_name = ""
 
     ## Location where output file is saved
     outputpath = "./" 
@@ -58,12 +56,14 @@ def main():
     rownum = 0
     for root, directory_names, filenames in os.walk(top_level_directory):
         # identify the person if any 
+        person_name = ""
+        year_name = ""
         for person in staff_names:
             if person in root: 
                 person_name = person    
         # identify the year if any 
         for year in years: 
-            if ("\\" + year + "\\") in root OR ("\/" + year + "\/") in root:
+            if ("\\" + year + "\\") in root or ("/" + year + "/") in root:
                 year_name = year 
         if (len(filenames) > 0): 
 
