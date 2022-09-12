@@ -39,7 +39,7 @@ def main():
     outputpath = "./" 
 
     ## Location from which to start walking through directories/folders
-    top_level_directory = "./"
+    top_level_directory = "."
 
     ## Holding the field names in a list
     fields = ["Index", "DepositTitle", "DepositDescription", "PathToFiles", "No. of files", "Name of first file"] 
@@ -48,14 +48,17 @@ def main():
     metadata = pd.DataFrame(columns = fields)
 
     # Output file
-    output_file = open( outputpath + "deposits_metadata.CSV", "w")
+    output_file = outputpath + "deposits_metadata.CSV"
     
-    for root, directory_names in os.walk(top_level_directory):
-        metadata[PathToFiles] = root 
-
+    for root, directory_names, filenames in os.walk(top_level_directory):
+        if (len(filenames) > 0):
+            # metadata["PathToFiles"] = root 
+            # metadata["DepositTitle"] = deposit_title_prefix 
+            # Output a list of sub-directories and numbers of files contained in each
+            print (root, len(filenames) , "files")
         
     metadata.to_csv(output_file)
-    output_file.close() 
+    # output_file.close() 
 
 if __name__=='__main__':
      main()
