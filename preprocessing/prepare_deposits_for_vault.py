@@ -63,7 +63,7 @@ def main():
                 person_name = person    
         # identify the year if any 
         for year in years: 
-            if year in root:
+            if ("\\" + year + "\\") in root OR ("\/" + year + "\/") in root:
                 year_name = year 
         if (len(filenames) > 0): 
 
