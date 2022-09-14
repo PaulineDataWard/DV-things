@@ -23,4 +23,7 @@ If you have a large number of directories you might want to run this script in t
 Example command to run the script from the Anaconda prompt on Windows in DataStore area: 
 python ..\prepare_deposits_for_vault.py
 
-The output will be found in S:\theme-of-interest\project-of-interest\deposits_metadata.CSV
+The output will be found in S:\theme-of-interest\project-of-interest\deposits_metadata.CSV 
+
+## Configuration 
+To configure which years or which staff member names the script might recognise and treat as part of the deposit names, or to configure the path where the script will start walking from, or the path to the output, edit the assignment statements in the "# Initialisation" section of the script. 
