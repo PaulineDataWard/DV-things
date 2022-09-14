@@ -27,7 +27,8 @@ import pandas as pd
 def main():
     # Initialisation
 
-    # Optionally uncomment the following lines to set the specified variables
+    ## Configuration
+    # Optionally edit / comment / uncomment the following lines to set the specified variables
     # add a deposit title prefix to give the project name eg 'physiology' 
     deposit_title_prefix = "<<PREFIX??? replace me in the script>> "
     # add a sample ID to all deposit descriptions (I think species should be in vault description rather than here - PW). 
@@ -38,11 +39,21 @@ def main():
     # If splitting by staff names, use this list of names which will be matched against folder names
     staff_names = ["Pauline", "Ivan", "Tomasz", "Andrew", "Manuel", "Nahuel", "Andy"]
 
-    ## Location where output file is saved
+    # If splitting by date in the folder name...
+    date_folder_pattern = "DD-Mmm-YYYY" # Swain lab dated folders eg 23-Jan-2017
+
+    # If finding logfiles, configure the filename patter to identify logfiles
+    logfile_pattern = ".*log.txt" # Swain lab logfiles when present, end in 'log.txt'. 
+
+    # Location from which to start walking through directories/folders
+    top_level_directory = "."
+
+    # Location where output file is saved
     outputpath = "./" 
 
-    ## Location from which to start walking through directories/folders
-    top_level_directory = "."
+    ## Mandatory variables - not to be amended for configuration purposes
+    # Output file
+    output_file = outputpath + "deposits_metadata.CSV"
 
     ## Holding the field names in a list
     fields = ["PathToFiles", "No. of files", "DepositTitle", "DepositDescription"] 
@@ -50,9 +61,7 @@ def main():
     # Holding the rows in a dataframe, where the fields are the columns
     metadata = pd.DataFrame(columns = fields)
 
-    # Output file
-    output_file = outputpath + "deposits_metadata.CSV"
-    
+     
     rownum = 0
     for root, directory_names, filenames in os.walk(top_level_directory):
         # identify the person if any 
