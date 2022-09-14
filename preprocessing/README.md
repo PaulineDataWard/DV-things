@@ -1,4 +1,5 @@
 # Documentation - prepare_deposits_for_vault.py 
+# v0.1 Exhaustive - Treat every folder containing files as a deposit
 This python script crawls through a hierarchically-organised set of folders 
 to compile suggested descriptive metadata about the data files contained therein 
 for use in depositing the files into the Edinburgh DataVault. 
