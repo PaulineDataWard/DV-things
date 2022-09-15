@@ -1,9 +1,24 @@
 # Documentation - prepare_deposits_for_vault.py 
-This python script crawls through a hierarchically-organised set of folders 
-to compile suggested descriptive metadata about the data files contained therein 
-for use in depositing the files into the Edinburgh DataVault. 
-The file outputs the metadata in a CSV file. 
+Pauline Ward 2022 
 
+## Purpose
+Extract metadata for DataVault from Swain Lab microscopy logfiles
+
+Not to be used for personal data because of the additional metadata that requires 
+
+This script is designed to be mostly adaptable for re-use by the BioRDM team, running the code usually from Windows environment. 
+
+This python script crawls through a hierarchically-organised set of folders to compile suggested descriptive metadata about the data files contained therein for use in depositing the files into the Edinburgh DataVault. The file outputs the metadata in a CSV file. 
+
+## Input
+
+Swain Lab folders are nested with levels for: 
+lab member first name; year; month (3-letter code camel case); date (DD-Mmm-YYYY)...
+.. experimental condition? ; position pos1 etc(?). 
+Not all Swain lab data has an accompanying logfile. Some folders have multiple .log files, others multiple .txt files. 
+In some cases one line in the file commences with 'Experiment description: '. 
+
+## How to use
 As of September 2022, the user still needs to manually add each deposit to the vault, manually selecting the folder containing the files. The CSV is intended as a guide. 
 
 The script should be copied to a suitable place and run from the top directory of the directory structure. 
