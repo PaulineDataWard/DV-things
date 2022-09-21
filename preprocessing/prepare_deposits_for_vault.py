@@ -14,7 +14,8 @@ import os
 import selectors
 import numpy as np
 import pandas as pd 
-import re
+import re 
+import argparse 
 
 # Outline: 
 # Crawl through folders using os.walk() 
@@ -25,41 +26,69 @@ import re
 # Deposit metadata fields: deposit_title, deposit_description, contains_perso_data = 'FALSE' etc 
 # 
 
+# Initialisation of global variables 
+
+# Parse the Command-Line Interface (CLI) arguments
+CLI_arg_parser = argparse.ArgumentParser(description='Prepare deposits for vault...')
+CLI_arg_parser.add_argument('year_flag', type=bool, help='Do you have folders named after and corresponding to one year e.g. \'2021\'?')
+args = CLI_arg_parser.parse_args()
+
+## Configuration
+# Optionally edit / comment / uncomment the following lines to set the specified variables
+# add a deposit title prefix to give the project name eg 'physiology'
+deposit_title_prefix = "<<PREFIX??? replace me in the script>> "
+# add a sample ID to all deposit descriptions (I think species should be in vault description rather than here - PW).
+deposit_description_prefix = "Sample ID:??? Equipment make and model??? etc ... "
+# If splitting by year, use this list of years which will be matched against folder names
+years = ["2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", 
+            "2020", "2021", "2022"]
+
+# If splitting by staff names, use this list of names which will be matched against folder names
+staff_names = ["Pauline", "Ivan", "Tomasz",
+               "Andrew", "Manuel", "Nahuel", "Andy"]
+
+# If splitting by date in the folder name...
+# Swain lab dated folders DD-Mmm-YYYY eg 23-Jan-2017
+date_folder_pattern = "[0-9][0-9]-[a-zA-Z][a-zA-Z][a-zA-Z]-[0-9][0-9][0-9][0-9]"
+
+# If finding logfiles, configure the filename patter to identify logfiles
+# Swain lab logfiles when present, end in 'log.txt'.
+logfile_pattern = "log.txt$"
+log_experiment = "Experiment details:\n"
+log_microscope = "Microscope name is:"
+
+# Location from which to start walking through directories/folders
+top_level_directory = "."
+
+# Location where output file is saved
+outputpath = "./"
+
+## Mandatory variables - not to be amended for configuration purposes
+# Output file
+output_file = outputpath + "deposits_metadata.CSV"
+
+
+
+def parse_logfile(): 
+
+
+def add_one_deposit_metadata():
+
+
+def make_csv():
+
+
+
+def make_index(): 
+
+
+
+
+
 def main():
-    # Initialisation
-
-    ## Configuration
-    # Optionally edit / comment / uncomment the following lines to set the specified variables
-    # add a deposit title prefix to give the project name eg 'physiology' 
-    deposit_title_prefix = "<<PREFIX??? replace me in the script>> "
-    # add a sample ID to all deposit descriptions (I think species should be in vault description rather than here - PW). 
-    deposit_description_prefix = "Sample ID:??? Equipment make and model??? etc ... " 
-    # If splitting by year, use this list of years which will be matched against folder names 
-    years = ["2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"]
-
-    # If splitting by staff names, use this list of names which will be matched against folder names
-    staff_names = ["Pauline", "Ivan", "Tomasz", "Andrew", "Manuel", "Nahuel", "Andy"]
-
-    # If splitting by date in the folder name...
-    date_folder_pattern = "[0-9][0-9]-[a-zA-Z][a-zA-Z][a-zA-Z]-[0-9][0-9][0-9][0-9]" # Swain lab dated folders DD-Mmm-YYYY eg 23-Jan-2017
-
-    # If finding logfiles, configure the filename patter to identify logfiles
-    logfile_pattern = "log.txt$" # Swain lab logfiles when present, end in 'log.txt'. 
-    log_experiment = "Experiment details:\n"
-    log_microscope = "Microscope name is:"
-
-    # Location from which to start walking through directories/folders
-    top_level_directory = "."
-
-    # Location where output file is saved
-    outputpath = "./" 
-
-    ## Mandatory variables - not to be amended for configuration purposes
-    # Output file
-    output_file = outputpath + "deposits_metadata.CSV"
 
     ## Holding the field names in a list
-    fields = ["PathToFiles", "Logfile", "DepositTitle", "DepositDescription", ] 
+    fields = ["PathToFiles", "Logfile", "DepositTitle", "DepositDescription" ] 
 
     # Holding the rows in a dataframe, where the fields are the columns
     metadata = pd.DataFrame(columns = fields)
