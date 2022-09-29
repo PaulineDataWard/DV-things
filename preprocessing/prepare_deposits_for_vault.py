@@ -49,12 +49,26 @@ CLI_arg_parser.add_argument(
 
 args = CLI_arg_parser.parse_args()
 
+# DATA STRUCTURE - Holding the deposit field names in a list
+fields = ["PathToFiles", "Logfile", "DepositTitle", "DepositDescription" ] 
+
+# Holding the rows in a dataframe, where the fields are the columns, 
+# and each row is a deposit
+metadata = pd.DataFrame(columns = fields)
+
+# Holding the details of experiments drawn from files, which may be combined together in deposits, 
+# and should all be listed in the index file
+experimental_details_fields = ["Microscrope_name", "Expt_description", "Omero_project", "Omero_tags"]
+experiments = pd.DataFrame(column = )
+
 # Configuration
 # Optionally edit / comment / uncomment the following lines to set the specified variables
 # add a deposit title prefix to give the project name eg 'physiology'
-deposit_title_prefix = "<<PREFIX??? replace me in the script>> "
+deposit_title_prefix = "" 
+# deposit_title_prefix = "<<PREFIX??? replace me in the script>> "
 # add a sample ID to all deposit descriptions (I think species should be in vault description rather than here - PW).
-deposit_description_prefix = "Sample ID:??? Equipment make and model??? etc ... "
+deposit_description_prefix = ""
+# deposit_description_prefix = "Sample ID:??? Equipment make and model??? etc ... "
 # If splitting by year, use this list of years which will be matched against folder names
 years = ["2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019",
             "2020", "2021", "2022", "2023", "2024", "2025"]
@@ -127,11 +141,7 @@ def make_index():
 
 def main():
 
-    # Holding the field names in a list
-    fields = ["PathToFiles", "Logfile", "DepositTitle", "DepositDescription" ] 
-
-    # Holding the rows in a dataframe, where the fields are the columns
-    metadata = pd.DataFrame(columns = fields)
+    
 
      
     rownum = 0
